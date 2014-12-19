@@ -3,7 +3,7 @@ sensocket
 
 example sensortag page with express.js and socket.io
 
-
+    npm install
     node server/run.js
 
 Start sensorTag by pressing advertising button
