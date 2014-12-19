@@ -1,0 +1,17 @@
+{
+  "name": "sensocket",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=0.10.10",
+    "npm": ">=1.2.15"
+  },
+  "dependencies": {
+    "async": "*",
+    "sensortag": "*",
+    "body-parser": "~1.4.3",
+    "express": "~4.10.4",
+    "lodash": "~2.4.1",
+    "socket.io": "~1.0.6",
+    "socket.io-client": "~1.0.6"
+  }
+}

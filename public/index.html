@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+<h1>Sensors - <span id="status"></span></h1>
+
+<h2>Magneto</h2>
+<p>
+  X: <span id="m_x"></span><br>
+  Y: <span id="m_y"></span><br>
+  Z: <span id="m_z"></span><br>
+</p>
+
+<h2>Temperature and humidity</h2>
+<p>
+  <span id="temperature"></span> °C<br>
+  <span id="humidity"></span> %<br>
+</p>
+
+<button onclick="socket.emit('start');">Connect</button>
+<button onclick="socket.emit('stop');">Stop</button>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  function r(num) {
+    return Math.round(num * 100) / 100;
+  }
+  var socket = io.connect('/sensortag');
+  socket.on('magneto', function (data) {
+    document.getElementById('m_x').innerHTML = r(data.x);
+    document.getElementById('m_y').innerHTML = r(data.y);
+    document.getElementById('m_z').innerHTML = r(data.z);
+  });
+
+  socket.on('humidity', function (data) {
+    document.getElementById('temperature').innerHTML = r(data.temperature);
+    document.getElementById('humidity').innerHTML = r(data.humidity);
+  });
+
+  socket.on('connected', function () {
+    document.getElementById('status').innerHTML = "connected";
+  });
+  socket.on('disconnected', function () {
+    document.getElementById('status').innerHTML = "disconnected";
+  });
+</script>
+</body>
+</html>
